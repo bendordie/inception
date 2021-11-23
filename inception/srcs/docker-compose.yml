@@ -35,7 +35,7 @@ services:
       - "443:443"
     # монтируем директории, слева директории на основной машине, справа - куда они монтируются в контейнере
     volumes:
-      - $WP_VOL:/var/www/html
+      - ${WP_VOL}/:/var/www/html
     # задаем имя контейнеру
     container_name: nginx
     # указываем условие перезапуска контейнера
@@ -56,7 +56,7 @@ services:
       - "3306:3306"
     # монтируем директории
     volumes:
-      - $WP_DB:/etc/mysql
+      - ${WP_VOL}/:/etc/mysql
     # задаем имя контейнеру
     container_name: mariadb
     # указываем условие перезапуска контейнера
@@ -66,22 +66,19 @@ services:
     # определяем сеть для WordPress
     networks:
       - inception
-      # собираем образ WordPress
-      build:
-        context: ./wordpress
-      # указаываем файл с переменными окружения
-      env_file:
-        - .env
-      # маршрутизируем порты
-      ports:
-        - "9000:9000"
-      # монтируем директории
-      volumes:
-        - $WP_VOL:/var/www/html
-      # задаем имя контейнеру
-      container_name: wordpress
-      # указываем условие перезапуска контейнера
-      restart: unless-stopped
-
-
-
+    # собираем образ WordPress
+    build:
+      context: ./wordpress
+    # указаываем файл с переменными окружения
+    env_file:
+      - .env
+    # маршрутизируем порты
+    ports:
+      - "9000:9000"
+    # монтируем директории
+    volumes:
+      - ${DB_VOL}/:/var/www/html
+    # задаем имя контейнеру
+    container_name: wordpress
+    # указываем условие перезапуска контейнера
+    restart: unless-stopped

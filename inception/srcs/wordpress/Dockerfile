@@ -20,9 +20,9 @@ RUN wget -c https://wordpress.org/latest.tar.gz
 RUN tar -xvf latest.tar.gz && rm -rf latest.tar.gz
 RUN mv wordpress ./var/www/wordpress
 
-COPY ./* /vat/www/html
-COPY ./wp-config.php ./var/www/wordpress
-COPY ./begin.sh ./tmp
+COPY ./* /var/www/html/
+COPY ./wp-config.php ./var/www/wordpress/
+COPY ./begin.sh ./tmp/
 
 RUN chmod 777 var/www/html
 RUN chmod 777 ./tmp/begin.sh

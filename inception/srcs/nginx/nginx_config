@@ -10,10 +10,10 @@ server {
 
 	ssl_certificate     /etc/ssl/certs/certificate.crt;
 	ssl_certificate_key /etc/ssl/certs/public.key;
-	ssl_protocols       TLSv1.2
-	index               index.php index.html
-	autoindex           on
-	root                /var/www/html/wordpress
+	ssl_protocols       TLSv1.2;
+	index               index.php index.html;
+	autoindex           on;
+	root                /var/www/html/wordpress;
 
 	location / {
 		try_files $uri $uri/ =404;
