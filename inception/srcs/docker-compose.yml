@@ -1,0 +1,87 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    docker-compose.yml                                 :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: cshells <marvin@42.fr>                     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/11/22 20:06:02 by cshells           #+#    #+#              #
+#    Updated: 2021/11/22 20:06:03 by cshells          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# Версия docker-compose
+version: '3'
+
+# определяем единую сеть
+networks:
+  inception:
+
+  # Список наших сервисов (контейнеров)
+services:
+  nginx:
+    # определяем сеть для NGINX
+    networks:
+      - inception
+    # собираем образ NGINX
+    build:
+      context: ./nginx
+    # указаываем файл с переменными окружения
+    env_file:
+      - .env
+    # маршрутизируем порты
+    ports:
+      - "80:80"
+      - "443:443"
+    # монтируем директории, слева директории на основной машине, справа - куда они монтируются в контейнере
+    volumes:
+      - $WP_VOL:/var/www/html
+    # задаем имя контейнеру
+    container_name: nginx
+    # указываем условие перезапуска контейнера
+    restart: unless-stopped
+
+  mariadb:
+    # определяем сеть для MariaDB
+    networks:
+      - inception
+    # собираем образ MariaDB
+    build:
+      context: ./mariadb
+    # указаываем файл с переменными окружения
+    env_file:
+      - .env
+    # маршрутизируем порты
+    ports:
+      - "3306:3306"
+    # монтируем директории
+    volumes:
+      - $WP_DB:/etc/mysql
+    # задаем имя контейнеру
+    container_name: mariadb
+    # указываем условие перезапуска контейнера
+    restart: unless-stopped
+
+  wordpress:
+    # определяем сеть для WordPress
+    networks:
+      - inception
+      # собираем образ WordPress
+      build:
+        context: ./wordpress
+      # указаываем файл с переменными окружения
+      env_file:
+        - .env
+      # маршрутизируем порты
+      ports:
+        - "9000:9000"
+      # монтируем директории
+      volumes:
+        - $WP_VOL:/var/www/html
+      # задаем имя контейнеру
+      container_name: wordpress
+      # указываем условие перезапуска контейнера
+      restart: unless-stopped
+
+
+
