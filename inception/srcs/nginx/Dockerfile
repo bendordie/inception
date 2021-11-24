@@ -18,9 +18,8 @@ RUN apk add openssl libc6-compat
 
 RUN openssl req -newkey rsa:2048 -x509 -sha256 -days 30 -nodes -out /etc/ssl/certs/certificate.crt -keyout /etc/ssl/certs/public.key -subj "/C=RU/ST=TATARSTAN/L=KAZAN/O=Security/OU=IT Department/CN=localhost"
 
-# COPY ./nginx_config /etc/nginx/conf.d/default.conf
-
-COPY ./default /etc/nginx/sites-enabled/
+COPY ./nginx_config /etc/nginx/conf.d/default.conf
+# COPY ./default /etc/nginx/sites-enabled/
 
 # RUN mkdir -p /data/www/html
 RUN mkdir -p /run/nginx
