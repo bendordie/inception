@@ -11,7 +11,7 @@ server {
 	ssl_certificate     /etc/ssl/certs/certificate.crt;
 	ssl_certificate_key /etc/ssl/certs/public.key;
 	ssl_protocols       TLSv1.2;
-	index               index.php index.html;
+	index               index.html index.php;
 	autoindex           on;
 	root                /var/www/html/wordpress;
 
