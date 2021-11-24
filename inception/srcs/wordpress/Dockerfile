@@ -18,14 +18,17 @@ RUN apk add --no-cache php7 php7-fpm php7-json php7-mysqli php7-curl php7-gd php
 
 RUN wget -c https://wordpress.org/latest.tar.gz
 RUN tar -xvf latest.tar.gz && rm -rf latest.tar.gz
-RUN mv wordpress ./var/www/wordpress
+RUN mv wordpress /var/www/html/wordpress
 
-COPY ./* /var/www/html/
-COPY ./wp-config.php ./var/www/wordpress/
-COPY ./begin.sh ./tmp/
+# COPY ./* /var/www/html/
+COPY ./wp-config.php /var/www/html/wordpress/
+COPY ./begin.sh /tmp/
+COPY ./php.ini /etc/php7/
+COPY www.conf /etc/php7/php-fpm.d/
 
-RUN chmod 777 var/www/html
-RUN chmod 777 ./tmp/begin.sh
+RUN chmod 777 /var/www/html/
+RUN chmod 777 /var/www/html/wordpress
+RUN chmod 777 /tmp/begin.sh
 RUN mkdir -p /run/nginx
 #RUN mkdir -p /var/run/php
 
