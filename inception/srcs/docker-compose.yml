@@ -31,34 +31,13 @@ services:
       - .env
     # маршрутизируем порты
     ports:
-      - "80:80"
-      - "443:443"
+      - 80:80
+      - 443:443
     # монтируем директории, слева директории на основной машине, справа - куда они монтируются в контейнере
     volumes:
       - wordpress-data:/var/www/wordpress
     # задаем имя контейнеру
     container_name: nginx
-    # указываем условие перезапуска контейнера
-    restart: unless-stopped
-
-  mariadb:
-    # определяем сеть для MariaDB
-    networks:
-      - inception
-    # собираем образ MariaDB
-    build:
-      context: ./mariadb
-    # указаываем файл с переменными окружения
-    env_file:
-      - .env
-    # маршрутизируем порты
-    ports:
-      - "3306:3306"
-    # монтируем директории
-    volumes:
-      - mariadb-data:/var/lib/mysql
-    # задаем имя контейнеру
-    container_name: mariadb
     # указываем условие перезапуска контейнера
     restart: unless-stopped
 
@@ -74,12 +53,33 @@ services:
       - .env
     # маршрутизируем порты
     ports:
-      - "9000:9000"
+      - 9000:9000
     # монтируем директории
     volumes:
       - wordpress-data:/var/www/wordpress
     # задаем имя контейнеру
     container_name: wordpress
+    # указываем условие перезапуска контейнера
+    restart: unless-stopped
+
+  mariadb:
+    # определяем сеть для MariaDB
+    networks:
+      - inception
+    # собираем образ MariaDB
+    build:
+      context: ./mariadb
+    # указаываем файл с переменными окружения
+    env_file:
+      - .env
+    # маршрутизируем порты
+    ports:
+      - 3306:3306
+    # монтируем директории
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    # задаем имя контейнеру
+    container_name: mariadb
     # указываем условие перезапуска контейнера
     restart: unless-stopped
 
