@@ -33,6 +33,6 @@ ps:
 	$(DOCKER) ps
 
 clean:
-	rm -rf $(WP_VOL) $(DB_VOL)
+	sudo rm -rf $(WP_VOL) $(DB_VOL)
 
 re: clean all
