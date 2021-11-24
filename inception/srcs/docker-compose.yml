@@ -33,6 +33,8 @@ services:
     ports:
       - 80:80
       - 443:443
+    depends_on:
+      - wordpress
     # монтируем директории, слева директории на основной машине, справа - куда они монтируются в контейнере
     volumes:
       - wordpress-data:/var/www/wordpress
