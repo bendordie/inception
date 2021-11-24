@@ -15,8 +15,8 @@ include srcs/.env
 DOCKER = cd srcs && sudo docker-compose -f ./docker-compose.yml
 
 all:
-	mkdir -p $(DB_VOL)
 	#cp -r srcs/mariadb/db/* $(DB_VOL)
+	mkdir -p $(DB_VOL)
 	mkdir -p $(WP_VOL)
 	cd srcs && sudo docker-compose up --build
 

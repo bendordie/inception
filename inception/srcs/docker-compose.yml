@@ -35,7 +35,7 @@ services:
       - "443:443"
     # монтируем директории, слева директории на основной машине, справа - куда они монтируются в контейнере
     volumes:
-      - $WP_VOL:/var/www/html
+      - wordpress-data:/var/www/wordpress
     # задаем имя контейнеру
     container_name: nginx
     # указываем условие перезапуска контейнера
@@ -56,7 +56,7 @@ services:
       - "3306:3306"
     # монтируем директории
     volumes:
-      - $WP_VOL:/etc/mysql
+      - mariadb-data:/var/lib/mysql
     # задаем имя контейнеру
     container_name: mariadb
     # указываем условие перезапуска контейнера
@@ -77,8 +77,22 @@ services:
       - "9000:9000"
     # монтируем директории
     volumes:
-      - $DB_VOL:/var/www/html
+      - wordpress-data:/var/www/wordpress
     # задаем имя контейнеру
     container_name: wordpress
     # указываем условие перезапуска контейнера
     restart: unless-stopped
+
+volumes:
+  wordpress-data:
+    driver_opts:
+      o: bind
+      device: "/home/cshells/data/wordpress-data"
+      type: none
+    driver: local
+  mariadb-data:
+    driver_opts:
+      o: bind
+      device: "/home/cshells/data/mariadb-data"
+      type: none
+    driver: local
