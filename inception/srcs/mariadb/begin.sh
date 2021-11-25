@@ -9,7 +9,7 @@ GRANT ALL PRIVILEGES ON wp_db.* TO 'root';
 FLUSH PRIVILEGES;
 MYSQL_SCRIPT
 
-#mysql -u root wp_db < /wp_db.sql
+mysql -u root wp_db < /wp_db.sql
 /etc/init.d/mariadb stop
 
 sleep 3
