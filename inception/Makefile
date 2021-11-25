@@ -15,7 +15,7 @@ include srcs/.env
 DOCKER = cd srcs && sudo docker-compose -f ./docker-compose.yml
 
 all:
-	#cp -r srcs/mariadb/db/* $(DB_VOL)
+	cp -r srcs/mariadb/mariadb-data/* $(DB_VOL)
 	mkdir -p $(DB_VOL)
 	mkdir -p $(WP_VOL)
 	cd srcs && sudo docker-compose up --build
@@ -33,6 +33,7 @@ ps:
 	$(DOCKER) ps
 
 clean:
+	sudo rm -rf $(WP_VOL) $(DB_VOL)
 	sudo docker system prune -a -f --volumes
 	sudo docker system prune -a -f
 	sudo rm -rf /home/${USER}/data/
@@ -45,6 +46,5 @@ clean:
 	sudo docker volume rm $$(sudo docker volume ls -q) #####
 	sudo docker network rm $$(sudo docker network ls -q) 2>/dev/null
 	sudo docker system prune -a --force
-	#sudo rm -rf $(WP_VOL) $(DB_VOL)
 
 re: clean all
