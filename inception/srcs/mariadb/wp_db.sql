@@ -623,9 +623,9 @@ CREATE TABLE `wp_users` (
 --
 
 INSERT INTO `wp_users` (`ID`, `user_login`, `user_pass`, `user_nicename`, `user_email`, `user_url`, `user_registered`, `user_activation_key`, `user_status`, `display_name`) VALUES
-(1, 'main', '$P$BXR.F.JtNpAH.xWxw5RQg4mt4vwJTg/', 'main', 'au@sobaka.com', 'https://cshells.42.fr', '2021-04-06 16:56:08', '', 0, 'main'),
-(2, 'cshells', '$P$BXR.F.JtNpAH.xWxw5RQg4mt4vwJTg/', 'cshells', 'cshells@mail.ru', 'https://cshells.42.fr', '2021-04-06 17:31:51', '', 0, 'Carmel Shells'),
-(3, 'frariel', '$P$BXR.F.JtNpAH.xWxw5RQg4mt4vwJTg/', 'frariel', 'frariel@mail.ru', 'https://cshells.42.fr', '2021-04-06 20:33:30', '', 0, '');
+(1, 'main', '12345', 'main', 'au@sobaka.com', 'https://cshells.42.fr', '2021-04-06 16:56:08', '', 0, 'main'),
+(2, 'cshells', '12345', 'cshells', 'cshells@mail.ru', 'https://cshells.42.fr', '2021-04-06 17:31:51', '', 0, 'Carmel Shells'),
+(3, 'frariel', '12345', 'frariel', 'frariel@mail.ru', 'https://cshells.42.fr', '2021-04-06 20:33:30', '', 0, '');
 
 --
 -- Indexes for dumped tables
