@@ -1,4 +1,4 @@
-openrc default
+rc default
 /etc/init.d/mariadb setup
 /etc/init.d/mariadb start
 
@@ -11,4 +11,7 @@ MYSQL_SCRIPT
 
 mysql -u root wp_db < /wp_db.sql
 /etc/init.d/mariadb stop
-/usr/bin/mysqld_safe --datadir="/var/lib/mysql"
+
+sleep 3
+
+/usr/bin/mysqld_safe
