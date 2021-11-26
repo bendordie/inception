@@ -1,12 +1,35 @@
+#!/bin/bash
 
-openrc default
-/etc/init.d/mariadb setup
-rc-service mariadb start
-# echo "CREATE DATABASE wp_db;" | mysql -u root --skip-password
-echo "GRANT ALL PRIVILEGES ON *.* TO 'cshells'@'%' IDENTIFIED BY '12345' WITH GRANT OPTION;" | mysql -u root --skip-password
-echo "FLUSH PRIVILEGES;" | mysql -u root --skip-password
-rc-service mariadb stop
-/usr/bin/mysqld_safe  --datadir="/var/lib/mysql"
+echo "CREATE DATABASE wp_db;" > setup.sql
+echo "CREATE USER 'cshells'@'%' IDENTIFIED BY '12345';" >> setup.sql
+echo "GRANT ALL PRIVILEGES ON wp_db.* TO 'cshells';" >> setup.sql
+echo "FLUSH PRIVILEGES;" >> setup.sql
+
+service mysql start && mysql < setup.sql
+rm -f setup.sql
+/usr/bin/mysqld_safe
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#openrc default
+#/etc/init.d/mariadb setup
+#rc-service mariadb start
+## echo "CREATE DATABASE wp_db;" | mysql -u root --skip-password
+#echo "GRANT ALL PRIVILEGES ON *.* TO 'cshells'@'%' IDENTIFIED BY '12345' WITH GRANT OPTION;" | mysql -u root --skip-password
+#echo "FLUSH PRIVILEGES;" | mysql -u root --skip-password
+#rc-service mariadb stop
+#/usr/bin/mysqld_safe  --datadir="/var/lib/mysql"
 
 
 
@@ -60,7 +83,7 @@ rc-service mariadb stop
 #mysql -u root -e "UPDATE mysql.user SET plugin='mysql_native_password' WHERE user='cshells';"
 #mysql -u root -e "FLUSH PRIVILEGES;"
 #
-exec "$@"
+#exec "$@"
 
 
 

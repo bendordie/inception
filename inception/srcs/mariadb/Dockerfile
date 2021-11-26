@@ -1,17 +1,35 @@
-FROM alpine:3.11.7
-
-RUN apk update && apk upgrade
-RUN apk add mariadb mariadb-client openrc bash;
-
-RUN mkdir "/run/mysqld" && chown -R mysql /run/mysqld
-
-COPY ./mydb.cnf /etc/mysql/my.cnf
-COPY ./begin.sh ./tmp
-RUN chmod 777 ./tmp/begin.sh
-
+FROM debian:buster
 EXPOSE 3306
+RUN apt-get update && apt-get install mariadb-server -y
+COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
+COPY ./start.sh /
+CMD ./start.sh
 
-CMD ./tmp/begin.sh
+
+
+
+
+
+
+
+
+
+
+
+#FROM alpine:3.11.7
+#
+#RUN apk update && apk upgrade
+#RUN apk add mariadb mariadb-client openrc bash;
+#
+#RUN mkdir "/run/mysqld" && chown -R mysql /run/mysqld
+#
+#COPY ./mydb.cnf /etc/mysql/my.cnf
+#COPY ./begin.sh ./tmp
+#RUN chmod 777 ./tmp/begin.sh
+#
+#EXPOSE 3306
+#
+#CMD ./tmp/begin.sh
 
 
 
