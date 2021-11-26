@@ -4,7 +4,7 @@
 
 chown -R mysql:mysql /var/lib/mysql
 chmod 755 -R /var/lib/mysql
-/etc/init.d/mariadb setup --user=mysql --ldata=/var/lib/mysql
+/etc/init.d/mariadb setup
 /etc/init.d/mariadb start
 
 mysql -u root -e "CREATE DATABASE IF NOT EXISTS 'wp_db';"
