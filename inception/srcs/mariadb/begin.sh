@@ -2,20 +2,40 @@
 #/etc/init.d/mariadb setup
 #/etc/init.d/mariadb start
 
-chown -R mysql:mysql /var/lib/mysql
-chmod 755 -R /var/lib/mysql
-/etc/init.d/mariadb setup
-/etc/init.d/mariadb start
+echo "CREATE DATABASE wp_db;" > setup.sql
+echo "CREATE USER 'cshells'@'%' IDENTIFIED BY '12345';" >> setup.sql
+echo "GRANT ALL PRIVILEGES ON wp_db.* TO 'cshells';" >> setup.sql
+echo "FLUSH PRIVILEGES;" >> setup.sql
 
-mysql -u root -e "CREATE DATABASE IF NOT EXISTS 'wp_db';"
-mysql -u root -e "CREATE USER  IF NOT EXISTS 'cshells'@'%' IDENTIFIED BY '12345';"
-mysql -u root -e "CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED BY 'root';"
-#mysql  -e "CREATE USER 'adminwp'@'localhost' IDENTIFIED BY 'adminwp';"
-mysql -u root -e "GRANT ALL PRIVILEGES ON 'wp_db'.* TO 'cshells'@'%' WITH GRANT OPTION;"
-mysql -u root -e "GRANT ALL PRIVILEGES ON 'wp_db'.* TO 'root'@'%' WITH GRANT OPTION;"
-mysql -u root -e "UPDATE mysql.user SET plugin='mysql_native_password' WHERE user='cshells';"
-mysql -u root -e "FLUSH PRIVILEGES;"
+service mysql start && mysql < setup.sql
+rm -f setup.sql
+/usr/bin/mysqld_safe
 
+
+
+
+
+
+
+
+
+
+
+
+#chown -R mysql:mysql /var/lib/mysql
+#chmod 755 -R /var/lib/mysql
+#/etc/init.d/mariadb setup
+#/etc/init.d/mariadb start
+#
+#mysql -u root -e "CREATE DATABASE IF NOT EXISTS 'wp_db';"
+#mysql -u root -e "CREATE USER  IF NOT EXISTS 'cshells'@'%' IDENTIFIED BY '12345';"
+#mysql -u root -e "CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED BY 'root';"
+##mysql  -e "CREATE USER 'adminwp'@'localhost' IDENTIFIED BY 'adminwp';"
+#mysql -u root -e "GRANT ALL PRIVILEGES ON 'wp_db'.* TO 'cshells'@'%' WITH GRANT OPTION;"
+#mysql -u root -e "GRANT ALL PRIVILEGES ON 'wp_db'.* TO 'root'@'%' WITH GRANT OPTION;"
+#mysql -u root -e "UPDATE mysql.user SET plugin='mysql_native_password' WHERE user='cshells';"
+#mysql -u root -e "FLUSH PRIVILEGES;"
+#
 exec "$@"
 
 
