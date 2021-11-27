@@ -32,9 +32,9 @@ RUN chmod 777 /tmp/begin.sh
 RUN mkdir -p /run/nginx
 #RUN mkdir -p /var/run/php
 
-ADD ["https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar", "./"]
-RUN chmod +x wp-cli.phar
-RUN mv wp-cli.phar /usr/local/bin/wp
+# ADD ["https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar", "./"]
+# RUN chmod +x wp-cli.phar
+# RUN mv wp-cli.phar /usr/local/bin/wp
 
 EXPOSE 9000
 
