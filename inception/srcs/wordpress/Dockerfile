@@ -27,6 +27,10 @@ COPY ./begin.sh /
 COPY ./php.ini /etc/php7/
 COPY www.conf /etc/php7/php-fpm.d/
 
+ADD ["https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar", "./"]
+RUN chmod +x wp-cli.phar
+RUN mv wp-cli.phar /usr/local/bin/wp
+
 RUN chmod 777 /var/www/
 RUN chmod 777 /var/www/wordpress
 RUN chmod 777 /begin.sh
