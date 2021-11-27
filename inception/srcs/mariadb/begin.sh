@@ -15,4 +15,4 @@ MYSQL_SCRIPT
 
 sleep 3
 
-/usr/bin/mysqld_safe
+/usr/bin/mysqld
