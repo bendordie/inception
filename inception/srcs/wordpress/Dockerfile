@@ -23,16 +23,18 @@ RUN mv wordpress /var/www/
 
 # COPY ./* /var/www/html/
 COPY ./wp-config.php /var/www/wordpress/
-COPY ./begin.sh /tmp/
+COPY ./begin.sh /
 COPY ./php.ini /etc/php7/
 COPY www.conf /etc/php7/php-fpm.d/
 
 RUN chmod 777 /var/www/
 RUN chmod 777 /var/www/wordpress
-RUN chmod 777 /tmp/begin.sh
+RUN chmod 777 /begin.sh
 RUN mkdir -p /run/nginx
 #RUN mkdir -p /var/run/php
 
 EXPOSE 9000
 
-CMD ./tmp/begin.sh
+CMD ["/begin.sh"]
+
+# CMD ./tmp/begin.sh
