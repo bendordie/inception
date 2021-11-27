@@ -13,7 +13,7 @@
 FROM debian:buster
 
 RUN apt-get update && apt-get install -y php7.3-fpm php-mysql php-mbstring vim wget
-COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d
+COPY ./www.conf /etc/php/7.3/fpm/pool.d
 
 ADD https://wordpress.org/latest.tar.gz /var/www/
 RUN cd /var/www && tar -xzvf latest.tar.gz
