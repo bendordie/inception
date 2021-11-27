@@ -1,13 +1,62 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-echo "CREATE DATABASE wp_db;" > setup.sql
-echo "CREATE USER 'cshells'@'%' IDENTIFIED BY '12345';" >> setup.sql
-echo "GRANT ALL PRIVILEGES ON wp_db.* TO 'cshells';" >> setup.sql
-echo "FLUSH PRIVILEGES;" >> setup.sql
+# Config
+mv /tools_dir/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
-service mysql start && mysql < setup.sql
-rm -f setup.sql
-/usr/bin/mysqld_safe
+# Права
+chown -R mysql:mysql /var/lib/mysql
+chmod 755 -R /var/lib/mysql
+
+#
+mysql_install_db --user=mysql --ldata=/var/lib/mysql
+service mysql start
+
+db_name='wp_db'
+username='cshells'
+password='dbpass'
+hostname='localhost'
+
+# WordPress database create and add users
+mysql -u root -e "CREATE DATABASE IF NOT EXISTS $db_name;"
+mysql -u root -e "CREATE USER  IF NOT EXISTS '$username'@'%' IDENTIFIED BY '$password';"
+mysql -u root -e "CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED BY 'root';"
+#mysql  -e "CREATE USER 'adminwp'@'localhost' IDENTIFIED BY 'adminwp';"
+mysql -u root -e "GRANT ALL PRIVILEGES ON $db_name.* TO '$username'@'%' WITH GRANT OPTION;"
+mysql -u root -e "GRANT ALL PRIVILEGES ON $db_name.* TO 'root'@'%' WITH GRANT OPTION;"
+mysql -u root -e "UPDATE mysql.user SET plugin='mysql_native_password' WHERE user='$username';"
+mysql -u root -e "FLUSH PRIVILEGES;"
+
+#mysql < create_db.sql
+
+exec "$@"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#echo "CREATE DATABASE wp_db;" > setup.sql
+#echo "CREATE USER 'cshells'@'%' IDENTIFIED BY '12345';" >> setup.sql
+#echo "GRANT ALL PRIVILEGES ON wp_db.* TO 'cshells';" >> setup.sql
+#echo "FLUSH PRIVILEGES;" >> setup.sql
+#
+#service mysql start && mysql < setup.sql
+#rm -f setup.sql
+#/usr/bin/mysqld_safe
 
 
 
