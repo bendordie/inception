@@ -18,7 +18,7 @@ chown -R mysql /var/run/mysqld
 fi
 chown -R mysql:mysql /var/lib/mysql
 
-mysqld
+mysqld --daemonize
 
 
 
