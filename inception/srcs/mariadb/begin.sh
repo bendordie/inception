@@ -16,7 +16,6 @@ mkfifo var/run/mysqld/mysqld.sock
 touch /var/run/mysqld/mysqld.pid
 chown -R mysql /var/run/mysqld
 fi
-cp -r /tmp/mydb/* /var/lib/mysql
 chown -R mysql:mysql /var/lib/mysql
 
 mysqld
