@@ -21,6 +21,7 @@ RUN rm -f /var/www/latest.tar.gz
 
 COPY ./wp-config.php /var/www/wordpress/
 COPY ./begin.sh /
+RUN chmod 777 /begin.sh
 
 ADD ["https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar", "./"]
 RUN chmod +x wp-cli.phar
