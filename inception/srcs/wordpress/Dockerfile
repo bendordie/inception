@@ -18,10 +18,12 @@ RUN apk add --no-cache php7 php7-fpm php7-json php7-mysqli php7-curl php7-gd php
 
 RUN wget -c https://wordpress.org/latest.tar.gz
 RUN tar -xvf latest.tar.gz && rm -rf latest.tar.gz
-# RUN mkdir -p /var/www/html
 RUN mv wordpress /var/www/
 
-# COPY ./* /var/www/html/
+ADD ["https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar", "./"]
+RUN chmod +x wp-cli.phar
+RUN mv wp-cli.phar /usr/local/bin/wp
+
 COPY ./wp-config.php /var/www/wordpress/
 COPY ./begin.sh /tmp/
 COPY ./php.ini /etc/php7/
