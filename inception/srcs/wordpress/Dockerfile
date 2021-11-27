@@ -20,9 +20,6 @@ RUN wget -c https://wordpress.org/latest.tar.gz
 RUN tar -xvf latest.tar.gz && rm -rf latest.tar.gz
 RUN mv wordpress /var/www/
 
-ADD ["https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar", "./"]
-RUN chmod +x wp-cli.phar
-RUN mv wp-cli.phar /usr/local/bin/wp
 
 COPY ./wp-config.php /var/www/wordpress/
 COPY ./begin.sh /tmp/
@@ -35,6 +32,10 @@ RUN chmod 777 /tmp/begin.sh
 RUN mkdir -p /run/nginx
 #RUN mkdir -p /var/run/php
 
+ADD ["https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar", "./"]
+RUN chmod +x wp-cli.phar
+RUN mv wp-cli.phar /usr/local/bin/wp
+
 EXPOSE 9000
 
-CMD ./tmp/begin.sh
+CMD /tmp/begin.sh
