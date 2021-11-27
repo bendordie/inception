@@ -28,7 +28,7 @@ EXPOSE 3306
 
 #ENTRYPOINT ["./db.sh"]
 
-
+RUN chmod 777 ./begin.sh
 CMD ./begin.sh
 
 #mysql -u root -h mariadb -p
