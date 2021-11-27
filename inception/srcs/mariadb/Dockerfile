@@ -7,7 +7,7 @@ RUN mkdir -p /etc/mysql/mysql.conf.d
 COPY ./mydb.cnf /etc/mysql/my.cnf
 
 RUN mkdir -p /tmp/mydb
-RUN cp -r mariadb-data/* /tmp/mydb
+COPY ./mariadb-data/* /tmp/mydb
 
 
 COPY ./begin.sh ./tmp
