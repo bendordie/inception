@@ -1,3 +1,5 @@
+FROM alpine:3.11.7
+
 RUN apk update && apk upgrade
 RUN apk add openrc mysql mysql-client bash
 RUN apk add rsync
