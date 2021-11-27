@@ -5,7 +5,7 @@ if ! $(wp core is-installed --allow-root); then
     wp core install		\
         --allow-root    \
 	--path=/var/www/wordpress	\
-        --url=https://cshells.42.fr        \
+        --url=https://cshells.42.fr \
         --title=CSHELLS_INCEPTION    \
         --admin_user=cshells     \
         --admin_password=12345 \
@@ -13,6 +13,6 @@ if ! $(wp core is-installed --allow-root); then
 	wp user create --allow-root frariel frariel@student.21-school.ru --user_pass=12345
 fi
 
-exec "$@"
+#exec "$@"
 
-#/usr/sbin/php-fpm7 -F -R --nodaemonize
+/usr/sbin/php-fpm7 -F -R --nodaemonize
