@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#
 #if ! $(wp core is-installed --allow-root); then
 #	wp config shuffle-salts --allow-root
 #    wp core install		\
@@ -12,7 +12,7 @@
 #        --admin_email=cshells@student.21-school.ru
 #	wp user create --allow-root frariel frariel@student.21-school.ru --user_pass=12345
 #fi
-
+#
 #exec "$@"
 
 
@@ -21,6 +21,6 @@
 
 
 
-##!/bin/sh
-#
-#/usr/sbin/php-fpm7 -F -R --nodaemonize
+#!/bin/sh
+
+/usr/sbin/php-fpm7 -F -R --nodaemonize
