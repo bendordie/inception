@@ -56,6 +56,8 @@ services:
     # маршрутизируем порты
     ports:
       - "9000:9000"
+    depends_on:
+      - mariadb
     # монтируем директории
     volumes:
       - wordpress-data:/var/www/wordpress
