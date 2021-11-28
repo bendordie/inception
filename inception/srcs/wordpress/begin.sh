@@ -1,6 +1,7 @@
 #!/bin/sh
 
-/usr/sbin/php-fpm7 -F -R --nodaemonize
+#/usr/sbin/php-fpm7 -F -R --nodaemonize
+/usr/sbin/php-fpm7.3 -F
 
 #if ! $(wp core is-installed --allow-root); then
 #	wp config shuffle-salts --allow-root
