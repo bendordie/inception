@@ -12,36 +12,11 @@ sleep 10
 wp core install --allow-root \
 				--url=cshells.42.fr \
 				--title=inception \
-				--admin_user=supervisor \
-				--admin_password=superpassword \
-				--admin_email=supervisor@esuper.com \
+				--admin_user=maks \
+				--admin_password=maks21 \
+				--admin_email=maks@mail.com \
 				--path=/var/www/wordpress/
 
-wp user create user1 askhab@mail.com --role=author --user_pass="12345" --allow-root --path=/var/www/wordpress/
+wp user create user1 user1@mail.com --role=author --user_pass="12345" --allow-root --path=/var/www/wordpress/
 
 /usr/sbin/php-fpm7.3 -F --nodaemonize
-
-
-
-
-#/usr/sbin/php-fpm7 -F -R --nodaemonize
-#/usr/sbin/php-fpm7.3 -F
-
-#if ! $(wp core is-installed --allow-root); then
-#	wp config shuffle-salts --allow-root
-#    wp core install		\
-#        --allow-root    \
-#	--path=/var/www/wordpress	\
-#        --url=https://cshells.42.fr \
-#        --title=CSHELLS_INCEPTION    \
-#        --admin_user=cshells     \
-#        --admin_password=12345 \
-#        --admin_email=cshells@student.21-school.ru
-#	wp user create --allow-root frariel frariel@student.21-school.ru --user_pass=12345
-#fi
-
-
-
-#exec "$@"
-
-
