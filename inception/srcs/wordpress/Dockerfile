@@ -14,7 +14,9 @@ FROM alpine:3.11.7
 
 RUN apk update && apk upgrade
 RUN apk add nginx wget rsync libc6-compat
-RUN apk add --no-cache php7 php7-fpm php7-json php7-mysqli php7-curl php7-gd php7-intl php7-mbstring php7-soap php7-xml php7-xmlrpc php7-zip php7-iconv php7-phar php7-session
+RUN apk add php7.3 php-mysql php7.3-fpm php-pdo php-gd php-cli php-mbstring
+
+# RUN apk add --no-cache php7 php7-fpm php7-json php7-mysqli php7-curl php7-gd php7-intl php7-mbstring php7-soap php7-xml php7-xmlrpc php7-zip php7-iconv php7-phar php7-session
 
 # RUN wget -c https://wordpress.org/latest.tar.gz
 # RUN tar -xvf latest.tar.gz && rm -rf latest.tar.gz
