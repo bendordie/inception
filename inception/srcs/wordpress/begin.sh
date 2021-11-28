@@ -13,6 +13,6 @@ if ! $(wp core is-installed --allow-root); then
 	wp user create --allow-root frariel frariel@student.21-school.ru --user_pass=12345
 fi
 
-#exec "$@"
+exec "$@"
 
-/usr/sbin/php-fpm7 -F -R --nodaemonize
+

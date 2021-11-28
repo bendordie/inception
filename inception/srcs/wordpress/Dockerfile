@@ -39,6 +39,8 @@ RUN mkdir -p /run/nginx
 
 EXPOSE 9000
 
-CMD ["/begin.sh"]
+CMD ["/usr/sbin/php-fpm7 -F -R --nodaemonize"]
+
+ENTRYPOINT ["/begin.sh"]
 
 # CMD ./tmp/begin.sh
