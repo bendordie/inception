@@ -13,8 +13,8 @@ wp core install --allow-root \
 				--url=cshells.42.fr \
 				--title=inception \
 				--admin_user=maks \
-				--admin_password=maks21 \
-				--admin_email=${WP_ADMIN_PASS} \
+				--admin_password=${WP_ADMIN_PASS}  \
+				--admin_email=maks@mail.com \
 				--path=/var/www/wordpress/
 
 wp user create ${WP_USER} user1@mail.com --role=author --user_pass=${WP_USER_PASS} --allow-root --path=/var/www/wordpress/
