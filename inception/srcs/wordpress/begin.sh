@@ -6,7 +6,7 @@ wp config create --allow-root \
 				--dbname=wp_db \
 				--dbuser=cshells \
 				--dbhost=mariadb \
-				--dbpass=12345\
+				--dbpass=${DB_PASS}\
 				--path=/var/www/wordpress/
 sleep 10
 wp core install --allow-root \
@@ -14,7 +14,7 @@ wp core install --allow-root \
 				--title=inception \
 				--admin_user=maks \
 				--admin_password=maks21 \
-				--admin_email=maks@mail.com \
+				--admin_email=${WP_ADMIN_PASS} \
 				--path=/var/www/wordpress/
 
 wp user create ${WP_USER} user1@mail.com --role=author --user_pass=${WP_USER_PASS} --allow-root --path=/var/www/wordpress/
