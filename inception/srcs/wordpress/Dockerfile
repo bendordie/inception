@@ -43,4 +43,4 @@ EXPOSE 9000
 
 # ENTRYPOINT ["/begin.sh"]
 
-CMD ./tmp/begin.sh
+CMD ./begin.sh
