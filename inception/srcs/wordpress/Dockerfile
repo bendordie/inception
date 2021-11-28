@@ -35,12 +35,12 @@ RUN chmod 777 /var/www/
 RUN chmod 777 /var/www/wordpress
 RUN chmod 777 /begin.sh
 RUN mkdir -p /run/nginx
-#RUN mkdir -p /var/run/php
+# RUN mkdir -p /var/run/php
 
 EXPOSE 9000
 
-CMD ["/usr/sbin/php-fpm7 -F -R --nodaemonize"]
+# CMD ["/usr/sbin/php-fpm7 -F -R --nodaemonize"]
 
-ENTRYPOINT ["/begin.sh"]
+# ENTRYPOINT ["/begin.sh"]
 
-# CMD ./tmp/begin.sh
+CMD ./tmp/begin.sh
