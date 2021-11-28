@@ -13,8 +13,6 @@
 
 FROM debian:buster
 
-# WORKDIR /usr/lib/my_dir
-
 RUN apt update
 RUN apt upgrade -y
 RUN apt install curl -y
@@ -34,6 +32,10 @@ RUN chmod 777 /begin.sh
 EXPOSE 9000
 
 CMD ./begin.sh
+
+# CMD ["/usr/sbin/php-fpm7.3 -F"]
+
+# ENTRYPOINT ["./begin.sh"]
 
 
 

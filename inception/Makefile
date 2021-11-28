@@ -19,7 +19,7 @@ all:
 	#cp -r srcs/mariadb/mariadb-data/* $(DB_VOL)
 	mkdir -p $(WP_VOL)
 	cd srcs && sudo docker-compose up --build
-	cp -r srcs/mariadb/mariadb-data/* $(DB_VOL)
+	#cp -r srcs/mariadb/mariadb-data/* $(DB_VOL)
 
 up:
 	$(DOCKER) up -d
