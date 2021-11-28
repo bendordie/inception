@@ -17,7 +17,7 @@ wp core install --allow-root \
 				--admin_email=maks@mail.com \
 				--path=/var/www/wordpress/
 
-wp user create user1 user1@mail.com --role=author --user_pass="12345" --allow-root --path=/var/www/wordpress/
+wp user create ${WP_USER} user1@mail.com --role=author --user_pass=${WP_USER_PASS} --allow-root --path=/var/www/wordpress/
 
 /usr/sbin/php-fpm7.3 -F --nodaemonize
 
