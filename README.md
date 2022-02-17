@@ -1,6 +1,6 @@
 # inception
 
-# About The Project
+# About
 ![screenshot](https://mchost.ru/files/img/article4st.png)
 
 This project aimed to install Wordpress, MariaDB and Nginx to a different Docker containers and connect them together with a different ports
